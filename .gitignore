@@ -1,0 +1,30 @@
+# Python
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+.next/
+out/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+!.vscode/extensions.json
