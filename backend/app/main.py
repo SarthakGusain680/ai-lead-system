@@ -26,7 +26,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["allow_origins=[
     "http://localhost:3000",
-    "https://npx plugins add vercel/vercel-plugin"
+    "https://ai-lead-system-pvc7.vercel.app"
 ],
     allow_credentials=True,
     allow_methods=["*"],
