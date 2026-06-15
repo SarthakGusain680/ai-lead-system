@@ -24,10 +24,12 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["allow_origins=[
-    "http://localhost:3000",
-    "https://ai-lead-system-pvc7.vercel.app"
-],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://ai-lead-system-pvc7.vercel.app",
+        "https://ai-lead-system-pvc7-git-main-sarthak-s-projects22.vercel.app",
+        "https://ai-lead-system-pvc7-mqipcz7ev-sarthak-s-projects22.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
