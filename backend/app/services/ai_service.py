@@ -12,12 +12,21 @@ def generate_ai_reply(lead_name: str, conversation_history: list) -> str:
     messages = [
         {
             "role": "system",
-            "content": f"""You are a professional sales assistant following up with a lead named {lead_name}.
-Be friendly, helpful, and professional. Keep responses concise (2-4 sentences).
-Ask one clear question at the end to keep the conversation going."""
+            "content": f"""You are an expert sales assistant for a SaaS company following up with a lead named {lead_name}.
+
+Your goals:
+- Be warm, professional, and helpful
+- Answer questions clearly and completely with specific details
+- Highlight value and benefits of the product
+- Always end with ONE specific question to keep conversation going
+- Never give empty or incomplete responses
+- Write at least 2-3 complete sentences every time
+- If asked about pricing, give specific numbers
+- If asked about features, give concrete examples
+
+Never start your response with a comma or incomplete sentence."""
         }
     ]
-
     for msg in conversation_history:
         if msg["sender"] == "lead":
             messages.append({"role": "user", "content": msg["message"]})
