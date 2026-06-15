@@ -24,7 +24,10 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["allow_origins=[
+    "http://localhost:3000",
+    "https://npx plugins add vercel/vercel-plugin"
+],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
