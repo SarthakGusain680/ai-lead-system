@@ -64,6 +64,26 @@ export default function ConversationsContent() {
       setSending(false);
     }
   }
+  async function handleAIReply() {
+    if (!selectedLead) return;
+    try {
+      setSending(true);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/ai/reply`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ lead_id: selectedLead.id }),
+        }
+      );
+      if (!res.ok) throw new Error("AI reply failed");
+      await loadConversations(selectedLead.id);
+    } catch (err) {
+      alert("Failed to generate AI reply.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   function handleKeyDown(e: React.KeyboardEvent) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendMessage(); }
@@ -149,6 +169,13 @@ export default function ConversationsContent() {
               >
                 {sending ? "..." : "Send"}
               </button>
+              <button
+  onClick={handleAIReply}
+  disabled={sending}
+  className="bg-purple-600 hover:bg-purple-700 disabled:bg-slate-700 disabled:cursor-not-allowed text-white px-4 rounded-xl font-medium transition-colors text-sm"
+>
+  {sending ? "..." : "AI Reply"}
+</button>
             </div>
           </>
         )}
