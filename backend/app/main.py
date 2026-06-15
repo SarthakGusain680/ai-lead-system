@@ -2,16 +2,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
-from app.routes import leads, conversations, followups, ai, auth
+from app.routes import leads, conversations, followups, ai, auth, public
 from app.services.scheduler import start_scheduler, stop_scheduler
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Runs on startup
     start_scheduler()
     yield
-    # Runs on shutdown
     stop_scheduler()
 
 
@@ -24,12 +22,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://ai-lead-system-pvc7.vercel.app",
-        "https://ai-lead-system-pvc7-git-main-sarthak-s-projects22.vercel.app",
-        "https://ai-lead-system-pvc7-mqipcz7ev-sarthak-s-projects22.vercel.app",
-    ],
+    allow_origins=["*"],  # Allow all origins for public chat widget
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -40,6 +33,7 @@ app.include_router(leads.router)
 app.include_router(conversations.router)
 app.include_router(followups.router)
 app.include_router(ai.router)
+app.include_router(public.router)
 
 
 @app.get("/")
