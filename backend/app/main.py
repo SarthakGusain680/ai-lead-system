@@ -8,8 +8,14 @@ from app.services.scheduler import start_scheduler, stop_scheduler
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Create database tables on startup
+    from app.core.database import Base, engine
+    from app.models import User, Lead, Conversation, Followup
+    Base.metadata.create_all(bind=engine)
+    # Start scheduler
     start_scheduler()
     yield
+    # Stop scheduler on shutdown
     stop_scheduler()
 
 
@@ -19,6 +25,7 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
 
 app.add_middleware(
     CORSMiddleware,
