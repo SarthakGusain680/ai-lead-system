@@ -1,3 +1,9 @@
+// Keep Render backend alive - pings every 14 minutes to prevent sleep
+if (typeof window !== "undefined") {
+  setInterval(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/health`).catch(() => {});
+  }, 14 * 60 * 1000);
+}
 // Base URL from environment variable
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
