@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function DashboardLayout({
@@ -9,11 +9,19 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       router.push("/login");
+      return;
+    }
+    const user = localStorage.getItem("user");
+    if (user) {
+      try {
+        setUserEmail(JSON.parse(user).email || "");
+      } catch {}
     }
   }, [router]);
 
@@ -25,17 +33,14 @@ export default function DashboardLayout({
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
       <aside className="w-64 bg-slate-900 border-r border-slate-700 p-6 flex flex-col gap-2 fixed h-full">
         <div className="mb-8">
           <h1 className="text-xl font-bold text-white">AI Lead System</h1>
           <p className="text-slate-400 text-xs mt-1">Lead Management CRM</p>
-          {typeof window !== "undefined" && localStorage.getItem("user") && (
+          {userEmail && (
             <div className="mt-3 bg-slate-800 rounded-lg px-3 py-2">
               <p className="text-slate-400 text-xs">Logged in as</p>
-              <p className="text-white text-sm font-medium truncate">
-                {JSON.parse(localStorage.getItem("user") || "{}").email}
-              </p>
+              <p className="text-white text-sm font-medium truncate">{userEmail}</p>
             </div>
           )}
         </div>
@@ -63,7 +68,6 @@ export default function DashboardLayout({
         </button>
       </aside>
 
-      {/* Main content */}
       <main className="ml-64 flex-1 p-8">
         {children}
       </main>
