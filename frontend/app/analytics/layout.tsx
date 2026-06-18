@@ -30,6 +30,14 @@ export default function DashboardLayout({
         <div className="mb-8">
           <h1 className="text-xl font-bold text-white">AI Lead System</h1>
           <p className="text-slate-400 text-xs mt-1">Lead Management CRM</p>
+          {typeof window !== "undefined" && localStorage.getItem("user") && (
+            <div className="mt-3 bg-slate-800 rounded-lg px-3 py-2">
+              <p className="text-slate-400 text-xs">Logged in as</p>
+              <p className="text-white text-sm font-medium truncate">
+                {JSON.parse(localStorage.getItem("user") || "{}").email}
+              </p>
+            </div>
+          )}
         </div>
 
         <nav className="flex flex-col gap-1 flex-1">

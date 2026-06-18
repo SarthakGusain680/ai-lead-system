@@ -56,4 +56,4 @@ def delete_conversation(conversation_id: int, db: Session = Depends(get_db)):
     db.delete(convo)
     db.commit()
 
-    return {"message": f"Conversation {conversation_id} deleted successfully"}
+    return {"message": f"Conversation {conversation_id} deleted successfully"}  
