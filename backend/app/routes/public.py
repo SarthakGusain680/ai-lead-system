@@ -7,6 +7,7 @@ from app.core.database import get_db
 from app.models.lead import Lead
 from app.models.conversation import Conversation
 from app.services.ai_service import generate_ai_reply
+from app.services.email_service import send_new_lead_notification
 
 router = APIRouter(
     prefix="/public",
@@ -55,6 +56,13 @@ def public_chat(chat: ChatMessage, db: Session = Depends(get_db)):
         db.add(lead)
         db.commit()
         db.refresh(lead)
+        # Send email notification for new lead
+        send_new_lead_notification(
+            lead_name=chat.name,
+            lead_email=chat.email or "Not provided",
+            lead_message=chat.message,
+            source="chat_widget"
+        )
 
     # Step 2 - Save the customer's message
     customer_message = Conversation(
