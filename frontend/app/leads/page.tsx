@@ -118,6 +118,7 @@ export default function LeadsPage() {
             <p className="text-slate-500 text-sm mt-1">Click "+ Add Lead" to create your first lead</p>
           </div>
         ) : (
+          <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="text-left text-slate-400 text-sm border-b border-slate-700">
@@ -149,6 +150,7 @@ export default function LeadsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </Card>
     </div>

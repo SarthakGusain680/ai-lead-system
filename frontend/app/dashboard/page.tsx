@@ -42,7 +42,7 @@ export default function DashboardPage() {
         <p className="text-slate-400 mt-1">Overview of your lead pipeline</p>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard title="Total Leads" value={leads.length} subtitle="All time" color="text-blue-400" />
         <StatCard title="HOT Leads" value={hotLeads} subtitle="Ready to close" color="text-red-400" />
         <StatCard title="MEDIUM Leads" value={mediumLeads} subtitle="In progress" color="text-yellow-400" />
