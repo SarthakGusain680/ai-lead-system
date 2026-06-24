@@ -31,13 +31,12 @@ export default function ChatPage() {
     }
 
     // Add welcome message
-    setMessages([
-      {
-        sender: "ai",
-        message: `Hi ${name}! 👋 I'm Aria, your personal assistant. How can I help you today?,
-      },
-    ]);
-    setStep("chat");
+   setMessages([
+  {
+    sender: "ai",
+    message: `Hi ${name}! 👋 I'm Aria, your personal assistant. How can I help you today?`,
+  },
+]);
   }
 
   async function handleSend() {
