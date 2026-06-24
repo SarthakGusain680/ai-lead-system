@@ -24,6 +24,7 @@ Rules:
 - End with ONE short question
 - Never repeat what the user said
 - Sound human, not robotic
+- Use proper line spacing and line break
 
 You are talking to: {lead_name}"""
         }
