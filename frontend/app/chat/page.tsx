@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   sender: "lead" | "ai";
@@ -169,7 +170,9 @@ export default function ChatPage() {
                       : "bg-blue-600 text-white self-end rounded-tr-none ml-auto"
                   }`}
                 >
-                  {msg.message}
+                  <ReactMarkdown className="prose prose-invert prose-sm max-w-none">
+                      {msg.message}
+                    </ReactMarkdown>
                 </div>
               ))}
               {sending && (
