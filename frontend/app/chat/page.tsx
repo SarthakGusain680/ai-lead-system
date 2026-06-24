@@ -33,7 +33,7 @@ export default function ChatPage() {
     setMessages([
       {
         sender: "ai",
-        message: `Hi ${name}! 👋 I'm an AI assistant. How can I help you today?`,
+        message: `Hi ${name}! 👋 I'm Aria, your personal assistant. How can I help you today?,
       },
     ]);
     setStep("chat");
@@ -104,8 +104,8 @@ export default function ChatPage() {
             <span className="text-blue-600 font-bold text-lg">AI</span>
           </div>
           <div>
-            <p className="text-white font-semibold">AI Assistant</p>
-            <p className="text-blue-200 text-xs">Online — replies instantly</p>
+           <p className="text-white font-semibold">Aria — AI Assistant</p>
+          <p className="text-blue-200 text-xs">Online — replies instantly</p>
           </div>
         </div>
 
